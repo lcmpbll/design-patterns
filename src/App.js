@@ -1,26 +1,32 @@
 import { SplitScreen } from "./SplitScreen";
 import { RegularList } from "./Lists";
+import {SmallPersonListItem} from './People/SmallPersonListItem';
+import { LargePersonListItem } from "./People/LargePersonListItem";
 import { people, products } from "./Lists/lists"
+import { Modal } from "./Modals";
 import React from 'react';
 const RightHandComponent = ({name}) => {
-  return(
-    <h1 style={{backgroundColor: 'green'}}>{name}</h1>
+  return (
+    <h1>{name}</h1>
   );
 }
-const LeftHandComponent = ({message}) => {
-  return <p style={{backgroundColor: 'red'}}>{message}</p>
-}
 
+//counld rename to large product details, to demo that it's not just for lists.
 function App() {
   return (
+    <>
     <SplitScreen
    
       leftWeight={1}
       rightWeight={3}
     >
-      <LeftHandComponent message={'hello'}/>
+      <RegularList items={people} resourceName='person' itemComponent={SmallPersonListItem}/>
       <RightHandComponent name={'Liam'}/>
     </SplitScreen>
+    <Modal>
+      <LargePersonListItem person={people[0]}/>
+    </Modal>
+    </>
   );
 }
 
