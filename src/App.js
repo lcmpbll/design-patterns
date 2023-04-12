@@ -2,6 +2,8 @@ import { SplitScreen } from "./SplitScreen";
 import { RegularList } from "./Lists";
 import { people, products } from "./Lists/lists"
 import React from 'react';
+import { SmallPersonListItem } from "./People/SmallPersonListItem";
+import { LargePersonListItem } from "./People/LargePersonListItem";
 const RightHandComponent = ({name}) => {
   return(
     <h1 style={{backgroundColor: 'green'}}>{name}</h1>
@@ -18,8 +20,8 @@ function App() {
       leftWeight={1}
       rightWeight={3}
     >
-      <LeftHandComponent message={'hello'}/>
-      <RightHandComponent name={'Liam'}/>
+      <RegularList items={people} resourceName='person' itemComponent={SmallPersonListItem}/>
+      <RegularList  items={people} resourceName='person' itemComponent={LargePersonListItem}/>
     </SplitScreen>
   );
 }
